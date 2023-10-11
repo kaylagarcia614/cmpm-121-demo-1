@@ -11,35 +11,67 @@ const buttonName = "🐟";
 document.title = gameName;
 
 //header
-const header = document.createElement("header1");
-header.innerHTML = gameName;
-header.style.position = "";
-elements_to_add.push(header);
+create_new_element("header1", "", gameName);
 
 //counter
-let counter: number = 0;
-const counter_element = document.createElement("div");
-counter_element.style.fontSize = "35px";
-update_counter(counter_element, counter);
-elements_to_add.push(counter_element);
+let total_fishies: number = 0;
+const counter_element = create_new_element(
+  "div",
+  "35px",
+  total_fishies + "fishies captured",
+);
 
 //button
-const button = document.createElement("button");
-button.textContent = buttonName;
-button.style.fontSize = "40px";
-elements_to_add.push(button);
+const button = create_new_element("button", "50px", buttonName);
 
 // click
 const num_to_increase: number = 1;
 button.addEventListener("click", () => {
-  counter = counter + num_to_increase;
-  update_counter(counter_element, counter);
+  update_counter(
+    counter_element,
+    total_fishies,
+    num_to_increase,
+    " fishies captured",
+  );
 });
 
-function update_counter(count_element: HTMLDivElement, counter: number) {
-  count_element.innerHTML = counter + " fishies captured";
-}
+//Auto Click
+const per_second_counter: number = 1;
+const updates_per_second: number = 1;
 
+create_new_element("div", "30px", per_second_counter + " fishies");
+
+//Interval
+setInterval(() => {
+  update_counter(
+    counter_element,
+    total_fishies,
+    per_second_counter / updates_per_second,
+  );
+}, updates_per_second * 1000);
+
+//Add all elements in order
 elements_to_add.forEach((elem) => {
   app.append(elem);
 });
+
+//Update counter function
+function update_counter(
+  count_element: HTMLDivElement | HTMLElement,
+  counter: number,
+  count: number,
+  text: string = " fishies captured",
+) {
+  total_fishies = counter + count;
+  count_element.innerHTML = total_fishies + text;
+}
+
+// Create a new HTML element function
+function create_new_element(type: string, font_size: string, text: string) {
+  const new_element = document.createElement(type);
+  new_element.style.fontSize = font_size;
+  new_element.innerHTML = text;
+  elements_to_add.push(new_element);
+
+  return new_element;
+}
