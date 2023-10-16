@@ -62,9 +62,9 @@ export class upgrade {
     this.per_second_increase = psi;
     this.price_scaling = p_scaling;
     this.world_state = world;
-    this.description= description;
+    this.description = description;
 
-    this.set_text();      
+    this.set_text();
     this.button_element.disabled = true;
 
     // Add the button element to the world's elements_to_add array
@@ -102,17 +102,17 @@ export class upgrade {
   // Function to set the text displayed on the button element
   set_text() {
     this.button_element.innerHTML =
-    "<font size=+2>" +
-    this.emoji_name +
-    "</font><br> Cost: " +
-    this.cost.toFixed(1) +
-    " | " +
-    this.per_second_increase.toFixed(1) +
-    " pps" +
-    "<br>" +
-    "<font size=2>" +
-    this.description +
-    "</font>";
+      "<font size=+2>" +
+      this.emoji_name +
+      "</font><br> Cost: " +
+      this.cost.toFixed(1) +
+      " | " +
+      this.per_second_increase.toFixed(1) +
+      " pps" +
+      "<br>" +
+      "<font size=2>" +
+      this.description +
+      "</font>";
   }
 }
 export interface upgrade_data {
