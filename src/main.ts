@@ -30,13 +30,15 @@ button.addEventListener("click", () => {
 const autoclick_element = create_new_element(
   "div",
   "30px",
-  player.fishies_per_second + " fps",
+  player.fishies_per_second.toFixed(1) + " fps",
 );
 player.fishies_per_second_count_element = autoclick_element as HTMLDivElement; // Set the fishies per second count element in the world_state
 start_auto_counter(player); // Start automatic fishies per second counter
 
 // Create an upgrade button
 new upgrade("⛵️", 10, 1, 1, player); // Create an upgrade button with the specified parameters
+new upgrade("🚤", 100, 2, 1, player);
+new upgrade("🚢", 1000, 50, 1, player);
 
 // Add all elements to the app in the order they were created
 player.elements_to_add.forEach((elem) => {

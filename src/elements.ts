@@ -67,7 +67,7 @@ export class upgrade {
       " Cost: " +
       cost +
       " | " +
-      this.per_second_increase +
+      this.per_second_increase.toFixed(1) +
       " fps";
     this.button_element.disabled = true;
 
@@ -93,7 +93,7 @@ export class upgrade {
     // If there's a fishies per second count element, update its text
     if (this.world_state.fishies_per_second_count_element != null) {
       this.world_state.fishies_per_second_count_element.innerHTML =
-        this.world_state.fishies_per_second + " fps";
+        this.world_state.fishies_per_second.toFixed(1) + " fps";
     }
   }
 }
