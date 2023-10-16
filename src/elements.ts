@@ -21,7 +21,8 @@ export class world_state {
   // Method to update the total fishies count and update the displayed text
   update_counter(count: number, text: string = " fishies captured") {
     this.total_fishies = count + this.total_fishies;
-    this.total_fishies_count_element.innerHTML = this.total_fishies + text;
+    this.total_fishies_count_element.innerHTML =
+      this.total_fishies.toFixed(0) + text;
     this.check_buttons();
   }
 
@@ -76,8 +77,8 @@ export class upgrade {
 
     // Add a click event listener to the button
     this.button_element.addEventListener("click", () => {
-      world.update_counter(cost * -1, undefined); // Update total fishies count
-      this.cost = this.cost * this.price_scaling; // Increase the cost for the next upgrade
+      world.update_counter(this.cost * -1, undefined);
+      this.update_cost();
       this.update_fishies_per_second(); // Update fishies per second count
     });
 
@@ -95,5 +96,22 @@ export class upgrade {
       this.world_state.fishies_per_second_count_element.innerHTML =
         this.world_state.fishies_per_second.toFixed(1) + " fps";
     }
+  }
+
+  // Function to update the cost of an item
+  update_cost() {
+    this.cost = this.cost * this.price_scaling; // Multiply the cost by the price scaling factor
+    this.set_text(); // Update the text displayed on the button
+  }
+
+  // Function to set the text displayed on the button element
+  set_text() {
+    this.button_element.innerHTML =
+      this.emoji_name + // Display the emoji name
+      " Cost: " +
+      this.cost.toFixed(2) + // Display the cost with two decimal places
+      " | " +
+      this.per_second_increase.toFixed(1) + // Display the per-second increase with one decimal place
+      " fps"; // Display "fps" (frames per second)
   }
 }
