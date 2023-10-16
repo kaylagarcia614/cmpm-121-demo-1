@@ -4,9 +4,11 @@ import { world_state, upgrade, upgrade_data } from "./elements"; // Import the w
 const app: HTMLDivElement = document.querySelector("#app")!; // Select the HTML element with id "app"
 
 const available_upgrades: upgrade_data[] = [
-  { name: "⛵️paddle boat", cost: 10, rate: 0.1 },
-  { name: "🚤speed boat", cost: 100, rate: 2 },
-  { name: "🚢yacht", cost: 1000, rate: 50 },
+  { name: "🛶paddle boat", cost: 10, rate: 0.1, description: "little boat for little fish" },
+  { name: "⛵️sail boat", cost: 100, rate: 2, description:"more space for more fish" },
+  { name: "🚤speed boat", cost: 1000, rate: 50, description:"these fish arent fast enough" },
+  { name: "🚢yacht", cost: 5000, rate: 100, description:"all hands on deck" },
+  { name: "🛸aliens", cost: 10000, rate: 200, description:"no way aliens love fish too?" },
 ];
 
 // Create a counter element to display the total fishies captured
@@ -44,7 +46,14 @@ start_auto_counter(player); // Start automatic fishies per second counter
 // Create an upgrade button
 //Create Upgrade buttons
 available_upgrades.forEach((data) => {
-  new upgrade(data.name, data.cost, data.rate, 1.15, player);
+  new upgrade(
+    data.name,
+    data.cost,
+    data.rate,
+    1.15,
+    player,
+    data.description,
+  );
 });
 
 // Add all elements to the app in the order they were created

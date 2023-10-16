@@ -37,11 +37,7 @@ export class world_state {
     });
   }
 }
-export interface upgrade_data {
-  name: string;
-  cost: number;
-  rate: number;
-}
+
 // Define a class to represent an upgrade button
 export class upgrade {
   button_element: HTMLButtonElement; // The HTML button element
@@ -50,34 +46,25 @@ export class upgrade {
   price_scaling: number; // Scaling factor for the upgrade cost
   emoji_name: string; // Name or emoji associated with the upgrade
   world_state: world_state; // Reference to the world state
-
+  description: string;
   constructor(
     emoji: string,
     cost: number,
     psi: number,
     p_scaling: number,
     world: world_state,
+    description: string,
   ) {
     this.emoji_name = emoji;
     this.button_element = document.createElement("button");
-    this.button_element.style.fontSize = "40pt";
+    this.button_element.style.fontSize = "20pt";
     this.cost = cost;
     this.per_second_increase = psi;
     this.price_scaling = p_scaling;
     this.world_state = world;
+    this.description= description;
 
-    // Set the text and disable the button by default
-    this.button_element.innerHTML =
-      "<font size=" +
-      "+5" +
-      ">" +
-      this.emoji_name +
-      "</font><br> Cost: " +
-      " Cost: " +
-      cost +
-      " | " +
-      this.per_second_increase.toFixed(1) +
-      " fps";
+    this.set_text();      
     this.button_element.disabled = true;
 
     // Add the button element to the world's elements_to_add array
@@ -115,11 +102,22 @@ export class upgrade {
   // Function to set the text displayed on the button element
   set_text() {
     this.button_element.innerHTML =
-      this.emoji_name + // Display the emoji name
-      " Cost: " +
-      this.cost.toFixed(1) + // Display the cost with two decimal places
-      " | " +
-      this.per_second_increase.toFixed(1) + // Display the per-second increase with one decimal place
-      " fps"; // Display "fps" (frames per second)
+    "<font size=+2>" +
+    this.emoji_name +
+    "</font><br> Cost: " +
+    this.cost.toFixed(1) +
+    " | " +
+    this.per_second_increase.toFixed(1) +
+    " pps" +
+    "<br>" +
+    "<font size=2>" +
+    this.description +
+    "</font>";
   }
+}
+export interface upgrade_data {
+  name: string;
+  cost: number;
+  rate: number;
+  description: string;
 }
