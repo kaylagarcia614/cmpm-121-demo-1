@@ -36,9 +36,9 @@ player.fishies_per_second_count_element = autoclick_element as HTMLDivElement; /
 start_auto_counter(player); // Start automatic fishies per second counter
 
 // Create an upgrade button
-new upgrade("⛵️", 10, 1, 1.15, player); // Create an upgrade button with the specified parameters
-new upgrade("🚤", 100, 2, 1.15, player);
-new upgrade("🚢", 1000, 50, 1.15, player);
+new upgrade("⛵️paddle boat", 10, 1, 1.15, player); // Create an upgrade button with the specified parameters
+new upgrade("🚤speed boat", 100, 2, 1.15, player);
+new upgrade("🚢yacht", 1000, 50, 1.15, player);
 
 // Add all elements to the app in the order they were created
 player.elements_to_add.forEach((elem) => {

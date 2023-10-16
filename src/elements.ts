@@ -64,7 +64,11 @@ export class upgrade {
 
     // Set the text and disable the button by default
     this.button_element.innerHTML =
+      "<font size=" +
+      "+5" +
+      ">" +
       this.emoji_name +
+      "</font><br> Cost: " +
       " Cost: " +
       cost +
       " | " +
