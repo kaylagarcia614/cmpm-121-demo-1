@@ -37,7 +37,11 @@ export class world_state {
     });
   }
 }
-
+export interface upgrade_data {
+  name: string;
+  cost: number;
+  rate: number;
+}
 // Define a class to represent an upgrade button
 export class upgrade {
   button_element: HTMLButtonElement; // The HTML button element
@@ -113,7 +117,7 @@ export class upgrade {
     this.button_element.innerHTML =
       this.emoji_name + // Display the emoji name
       " Cost: " +
-      this.cost.toFixed(2) + // Display the cost with two decimal places
+      this.cost.toFixed(1) + // Display the cost with two decimal places
       " | " +
       this.per_second_increase.toFixed(1) + // Display the per-second increase with one decimal place
       " fps"; // Display "fps" (frames per second)

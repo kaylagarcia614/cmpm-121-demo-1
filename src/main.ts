@@ -1,7 +1,13 @@
 import "./style.css";
-import { world_state, upgrade } from "./elements"; // Import the world_state and upgrade classes from the 'elements' module
+import { world_state, upgrade, upgrade_data } from "./elements"; // Import the world_state and upgrade classes from the 'elements' module
 
 const app: HTMLDivElement = document.querySelector("#app")!; // Select the HTML element with id "app"
+
+const available_upgrades: upgrade_data[] = [
+  { name: "⛵️paddle boat", cost: 10, rate: 0.1 },
+  { name: "🚤speed boat", cost: 100, rate: 2 },
+  { name: "🚢yacht", cost: 1000, rate: 50 },
+];
 
 // Create a counter element to display the total fishies captured
 const total_fishies_counter_element = document.createElement("div");
@@ -36,9 +42,10 @@ player.fishies_per_second_count_element = autoclick_element as HTMLDivElement; /
 start_auto_counter(player); // Start automatic fishies per second counter
 
 // Create an upgrade button
-new upgrade("⛵️paddle boat", 10, 1, 1.15, player); // Create an upgrade button with the specified parameters
-new upgrade("🚤speed boat", 100, 2, 1.15, player);
-new upgrade("🚢yacht", 1000, 50, 1.15, player);
+//Create Upgrade buttons
+available_upgrades.forEach((data) => {
+  new upgrade(data.name, data.cost, data.rate, 1.15, player);
+});
 
 // Add all elements to the app in the order they were created
 player.elements_to_add.forEach((elem) => {
